@@ -1,8 +1,9 @@
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 const Body = () => {
   const [resList, setResList] = useState([]);
@@ -30,49 +31,34 @@ const Body = () => {
   }
 
   return (
-    <div className="body">
-      <div className="filter">
-        <div className="search">
-          <input
-            type="text"
-            className="search-box"
-            value={searchText}
-            onChange={(e) => {
-              setSearchText(e.target.value);
-              const filterReslist = InitialresList.filter((res) =>
-                res.info.name.toLowerCase().includes(e.target.value.toLowerCase())
-              );
-              setResList(filterReslist);
-              if(e.target.value.length==0)
-                setResList(InitialresList);
-            }}
-          />
-          <button
-            onClick={() => {
-              
-              const filterReslist = InitialresList.filter((res) =>
-                res.info.name.toLowerCase().includes(searchText.toLowerCase())
-              );
-              setResList(filterReslist);
-            }}
-          >
-            Search
-          </button>
+    <div className="bg-slate-50">
+      <div className="flex">
+        <div className="mr-4 pl-4">
+        <TextField id="outlined-basic" sx ={{ width: '220px', marginLeft:'5px'}}
+         onChange={(e) => {
+          setSearchText(e.target.value);
+          const filterReslist = InitialresList.filter((res) =>
+            res.info.name.toLowerCase().includes(e.target.value.toLowerCase())
+          );
+          setResList(filterReslist);
+          if(e.target.value.length==0)
+            setResList(InitialresList);
+        }}
+         label="Search" 
+         variant="outlined" />
+        
         </div>
-        <button
-          className="filter-btn"
-          onClick={() => {
+        
+        <Button variant="contained" sx = {{borderRadius:'20px', backgroundColor: 'light-blue'}}
+           onClick={() => {
             const filteredResList = InitialresList.filter(
-              (res) => res.info.avgRating > 4.0
+              (res) => res.info.avgRating > 4.5
             );
             setResList(filteredResList);
             console.log("button clicked");
-          }}
-        >
-          Top Rated Restaurants
-        </button>
+          }}>Top Rated Restaurant </Button>
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap">
         {resList.map((restaurant) => (
           <Link key = {restaurant.info.id} to={"/restaurants/"+restaurant.info.id}>
           < RestaurantCard  resData={restaurant} />
