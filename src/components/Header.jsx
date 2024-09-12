@@ -9,8 +9,8 @@ const Header = () => {
   const [btnName, setbtnName] = useState("Login");
   const onlineStatus = useOnlineStatus();
   return (
-    <div className='flex justify-between bg-orange-100 mb-5'>
-      <div className=''>
+    <div className='flex justify-between bg-orange-50 mb-5 shadow-lg '>
+      <div>
         <img className='w-40' src="https://www.logodesign.net/logo/smoking-burger-with-lettuce-3624ld.png?nwm=1&nws=1&industry=fast-food&sf=&txt_keyword=All" />
       </div>
       <div>
@@ -39,7 +39,7 @@ const Header = () => {
             onClick={() => {
               if (btnName === "Login") setbtnName("Logout");
               else {
-                setbtnName("Login");
+                setbtnName("Login") ;
               }
             }}
           >

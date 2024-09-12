@@ -12,9 +12,9 @@ const RestaurantCard = (props) => {
   } = resData?.info;
   const { deliveryTime } = resData?.info.sla;
 
-  return (
-    <Card sx={{ maxWidth: 245, height:500 , m: 2, p: 2, backgroundColor: "#f0f0f0" }}>
-      <CardMedia
+  return (                         
+    <Card sx={{ width: 340, height: 480,m: 2, p: 2, backgroundColor: "#f0f0f0" , borderRadius: '40px'}}>
+      <CardMedia sx = {{height: 250, width: 300,borderRadius:'25px'}}
         component="img"
         height="140"
         image={CDN_URL + cloudinaryImageId}
@@ -38,6 +38,19 @@ const RestaurantCard = (props) => {
       </CardContent>
     </Card>
   );
+};
+
+// Higher order Component 
+
+export const withIsOpenlabel = (RestaurantCard) =>{
+    return (props)=>{ 
+        return (
+        <div>
+            <label className="absolute bg-black text-white m-2 p-2 rounded-lg">Closed</label>
+            <RestaurantCard {...props}/>
+        </div>
+        );
+    };
 };
 
 export default RestaurantCard;
