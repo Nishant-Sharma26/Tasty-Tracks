@@ -1,16 +1,17 @@
 import RestaurantCard ,{ withIsOpenlabel } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState , useContext} from "react";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-
+import UserContext from "../uttils/UserContext";
 
 const Body = () => {
   const [resList, setResList] = useState([]);
   const [initialResList, setInitialResList] = useState([]);
   const [searchText, setSearchText] = useState("");
   
+  const {loggedInUser,setuserName} = useContext(UserContext);
   const RestaurantCardOpened = withIsOpenlabel(RestaurantCard);
 
   console.log("body rendered", resList);
@@ -86,6 +87,16 @@ const Body = () => {
         >
           Top Rated Restaurant
         </Button>
+        <div className="search  flex items-center flex-auto m-2 ">
+          <label>Username</label>
+          <input 
+          className= "border border-black p-1"
+          value = {loggedInUser}
+          onChange = {(e)=>setuserName(e.target.value)}
+          
+          />
+          
+        </div>
       </div>
 
       {/* If no restaurants match the search */} 

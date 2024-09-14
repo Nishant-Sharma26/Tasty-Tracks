@@ -18,3 +18,14 @@
 (Normal JS utility function)
 -useState() = superpowerful state variables
 -useEffect()
+
+# Redux Toolkit
+- Build our Application
+- Install Libraries
+- Install reduxjs/Toolkit and rect-redux
+- Build Our Slice 
+- Slice (cartslice)
+- dispatch(action)
+- Selector
+
+

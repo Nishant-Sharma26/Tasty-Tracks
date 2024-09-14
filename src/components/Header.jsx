@@ -1,13 +1,22 @@
-import { useState } from "react";
+import { useState , useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../uttils/useOnlineStatus";
 import HomeIcon from '@mui/icons-material/Home';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LoginIcon from '@mui/icons-material/Login';
+import UserContext from "../uttils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [btnName, setbtnName] = useState("Login");
+  
   const onlineStatus = useOnlineStatus();
+  
+  const { loggedInUser } = useContext(UserContext);
+
+  const cartItems = useSelector((store)=>store.cart.items);
+
+ 
   return (
     <div className='flex justify-between bg-orange-50 mb-5 shadow-lg '>
       <div>
@@ -30,7 +39,9 @@ const Header = () => {
           </li>
           <li className="pl-8 text-lg font-normal">
             <ShoppingCartIcon/>
-            Cart</li>
+            <Link to="/Cart">
+            Cart({cartItems.length} items)
+            </Link></li>
             <li className="pl-8">
               <LoginIcon/>
             </li>
@@ -45,6 +56,7 @@ const Header = () => {
           >
             {btnName}
           </button>
+          <li className="px-4">{loggedInUser}</li>
         </ul>
       </div>
     </div>

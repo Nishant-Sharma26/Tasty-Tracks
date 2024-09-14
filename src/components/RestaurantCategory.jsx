@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ItemList from "./ItemList";
 
-const RestaurantCategory = ({ data }) => {
+const RestaurantCategory = ({ data , dummy }) => {
   // State to control whether the accordion is expanded or collapsed
   const [isOpen, setIsOpen] = useState(false);
 
@@ -25,7 +25,7 @@ const RestaurantCategory = ({ data }) => {
       </div>
 
       {/* Conditionally render the ItemList based on isOpen */}
-      {isOpen && <ItemList items={data.itemCards} />}
+      {isOpen && <ItemList items={data.itemCards} dummy = {dummy}/>}
     </div>
   );
 };

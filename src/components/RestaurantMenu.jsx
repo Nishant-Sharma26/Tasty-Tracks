@@ -6,6 +6,8 @@ const RestaurantMenu = () => {
    
     const { resId } = useParams();
 
+    const dummy = "Dummy data";
+
     const resInfo = useRestaurantMenu(resId);
 
 
@@ -27,7 +29,7 @@ const RestaurantMenu = () => {
                 </p>
                 {/* categories accordation */}
                 {categories.map((category)=>(
-                        <RestaurantCategory data = {category?.card?.card} key = {category?.card?.card?.title}/>
+                        <RestaurantCategory data = {category?.card?.card} key = {category?.card?.card?.title} dummy = {dummy}/>
                 ))}
                   
         </div>
