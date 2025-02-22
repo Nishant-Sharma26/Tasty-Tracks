@@ -72,6 +72,7 @@ const Body = () => {
         <div className="mr-4 pl-4">
           <TextField
             id="outlined-basic"
+            data-testid = "search-restaurant"
             sx={{ width: '220px', marginLeft: '5px' }}
             value={searchText}
             onChange={handleSearch}

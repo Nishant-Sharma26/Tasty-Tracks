@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ItemList from "./ItemList";
 
-const RestaurantCategory = ({ data , dummy }) => {
+const RestaurantCategory = ({ data, dummy }) => {
   // State to control whether the accordion is expanded or collapsed
   const [isOpen, setIsOpen] = useState(false);
 
@@ -12,20 +12,22 @@ const RestaurantCategory = ({ data , dummy }) => {
 
   return (
     <div className="w-8/12 mx-auto my-4 bg-gray-50 shadow-lg p-4">
-      <div className="flex justify-between items-center">
+      {/* Make the whole line clickable */}
+      <div
+        className="flex justify-between items-center cursor-pointer"
+        onClick={toggleAccordion} // Add the onClick to the parent div
+      >
         <span className="font-bold text-lg">
           {data.title} ({data.itemCards.length})
         </span>
-        {/* Button to toggle accordion state */}
-        <button
-          onClick={toggleAccordion}  
-        >
+        {/* Button icon, but the click is handled by the parent div */}
+        <button>
           {isOpen ? "🔼" : "🔽"}
         </button>
       </div>
 
       {/* Conditionally render the ItemList based on isOpen */}
-      {isOpen && <ItemList items={data.itemCards} dummy = {dummy}/>}
+      {isOpen && <ItemList items={data.itemCards} dummy={dummy} />}
     </div>
   );
 };
