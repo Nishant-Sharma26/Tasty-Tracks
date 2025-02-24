@@ -8,8 +8,8 @@ const RestaurantCard = (props) => {
     name = "Unknown Restaurant", // Default name
     avgRating = "N/A", // Default rating
     cuisines = [], // Default empty array
-  } = resData?.info || {}; // Fallback to an empty object if resData.info is undefined
-  const { deliveryTime = "N/A" } = resData?.info?.sla || {}; // Default delivery time
+  } = resData|| {}; // Fallback to an empty object if resData.info is undefined
+  const { deliveryTime = "N/A" } = resData.sla || {}; // Default delivery time
   
   return (                         
     <Card data-testid = "res-card" sx={{ width: 340, height: 480, m: 2, p: 2, backgroundColor: "#f0f0f0", borderRadius: '40px' }}>

@@ -13,12 +13,10 @@ const RestaurantMenu = () => {
 
     if (resInfo === null) return <Shimmer />;
 
-    const { name, cuisines = [], costForTwoMessage } = resInfo?.cards?.[2]?.card?.card?.info || {};
-    const itemCards = resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]?.card?.card?.itemCards || [];
+    const {name, cuisines = [], costForTwoMessage } = resInfo?.info || {};
+   
 
-    const itemCards2 = resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card?.card?.itemCards || [];
-
-    const categories = resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(c=>c.card?.card?.['@type'] === 'type.googleapis.com/swiggy.presentation.food.v2.ItemCategory' );
+    const categories = resInfo?.menu.filter(c=>c.card?.card?.['@type'] === 'type.googleapis.com/swiggy.presentation.food.v2.ItemCategory' );
 
     return (
         <div className="text-center">

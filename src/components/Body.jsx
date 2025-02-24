@@ -14,7 +14,7 @@ const Body = () => {
   const {loggedInUser,setuserName} = useContext(UserContext);
   const RestaurantCardOpened = withIsOpenlabel(RestaurantCard);
 
-  console.log("body rendered", resList);
+  
   useEffect(() => {
     fetchData();
   }, []);
@@ -22,13 +22,13 @@ const Body = () => {
   const fetchData = async () => {
     try {
       const data = await fetch(
-        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.96340&lng=77.58550&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://platter-backend.vercel.app/api/restaurants"
       );
       const json = await data.json();
 
       console.log(json);
       const restaurants =
-        json?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        json;
       
       if (restaurants) {
         setResList(restaurants);
@@ -106,10 +106,10 @@ const Body = () => {
       ) : (
         <div className="flex flex-wrap">
           {resList.map((restaurant) => (
-            <Link key={restaurant.info.id}
-             to={"/restaurants/" + restaurant.info.id}
+            <Link key={restaurant.id}
+             to={"/restaurants/" + restaurant.id}
              >
-              {restaurant.info.isOpen === false ? (
+              {restaurant.isOpen === false ? (
                 <RestaurantCardOpened resData = {restaurant}/>
               ):(
                 <RestaurantCard resData={restaurant} />
