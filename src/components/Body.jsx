@@ -49,7 +49,7 @@ const Body = () => {
     setSearchText(value);
 
     const filteredResList = initialResList.filter((res) =>
-      res.info.name.toLowerCase().includes(value.toLowerCase())
+      res.name.toLowerCase().includes(value.toLowerCase())
     );
 
     if (value.length === 0) {
@@ -61,7 +61,7 @@ const Body = () => {
 
   const handleTopRated = () => {
     const filteredResList = initialResList.filter(
-      (res) => res.info.avgRating > 4.5
+      (res) => res.avgRating > 4.5
     );
     setResList(filteredResList);
   };
